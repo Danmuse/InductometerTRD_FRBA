@@ -6,7 +6,7 @@ The **Inductometer** project with autoranging aims to create a device to measure
 
 ### 🔌️ __Hardware & Setup__
 
-- [ ] [Identification of the sensors, modules and controllers used.](#) `DDM ~ 0.5`
+- [ ] [Identification of the sensors, modules and controllers used.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/1) `DDM ~ 0.5`
 <details>
   <summary><strong><span>&#160;</span>Electronic components</strong></summary>
   <ul>
@@ -18,20 +18,20 @@ The **Inductometer** project with autoranging aims to create a device to measure
   </ul>
 </details>
 
-- [ ] [Hardware installations in the cabinet.](#) `DDM ~ 0`
-- [ ] [Development board (Schematic and PCB).](#) `DDM ~ 0`
+- [ ] [Hardware installations and cabinet design.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/2) `DDM ~ 0`
+- [ ] [Development board (Schematic and PCB).](https://github.com/Danmuse/InductometerTRD_FRBA/issues/3) `DDM ~ 0`
 
 ### 👨‍💻️ __Firmware & Software__
 
-- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](#) `DDM ~ 0`
+- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 0` `MSS ~ 0`
 
 ### 📚️ __Documentation & Doxygen__
 
-- [ ] [Doxygen v1.9.6 Implementation for Code Documentation.](#) `DDM ~ 0`
-- [ ] [Presentation of the project idea.](#) `DDM ~ 0`
-- [ ] [Comprehensive and extensive project report.](#) `DDM ~ 0.5`
-- [ ] [Illustrations of the experience and trials.](#) `DDM ~ 0`
-- [ ] [Load component datasheet.](#) `DDM ~ 0`
+- [ ] [Doxygen v1.9.6 implementation for code documentation.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/5) `DDM ~ 0`
+- [ ] [Presentation of the project idea.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/6) `DDM ~ 0.5` `MSS ~ 0`
+- [ ] [Comprehensive and extensive project report.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/7) `DDM ~ 0.5` `MSS ~ 0`
+- [ ] [Illustrations of the experience and trials.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/8) `DDM ~ 0`
+- [ ] [Load component datasheet.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/9) `DDM ~ 0.5`
 
 ---
 
