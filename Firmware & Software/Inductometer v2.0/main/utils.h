@@ -2,7 +2,8 @@
 #define _UTILS_H_
 
 #include <Arduino.h>
-#include <avr/pgmspace.h>
+#include "hardwareConfig.h"
+#include <Wire.h>
 #include <SPI.h>
 
 #endif // _UTILS_H_

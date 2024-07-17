@@ -2,19 +2,16 @@
 #define _ST7789_H_
 
 #include "utils.h"
-#include <Adafruit_GFX.h>
 #if (__STM32F1__)
-#define TFT_DC  PB1
-#define TFT_RST PB0
 #include <Arduino_ST7789_STM.h>
 #else
-#define TFT_DC  8
-#define TFT_RST 9
 #include <Arduino_ST7789_Fast.h>
 #endif
 
 #define SCR_WD   240
 #define SCR_HT   240
+
+void drawImage(Arduino_ST7789 &tft, const uint16_t *image);
 
 /*
 

@@ -7,10 +7,10 @@
 // ------------------------------
 // remove "define COMPATIBILITY_MODE" for best performance on 16MHz AVR Arduinos
 // if defined - the library should work on all Arduino compatible boards
-//#define COMPATIBILITY_MODE
+// #define COMPATIBILITY_MODE
 
 // define for LCD boards where CS pin is internally connected to the ground
-#define CS_ALWAYS_LOW
+// #define CS_ALWAYS_LOW
 // ------------------------------
 
 #include "Arduino.h"

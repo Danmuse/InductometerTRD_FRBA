@@ -6,6 +6,8 @@
     <span>&#10038;</span> [STM32F103C8Tx interesting projects](https://github.com/CaliBeta).<br>
     <span>&#10038;</span> [Generate sinusiodal signal with Pulse-Width Modulation](https://www.youtube.com/watch?v=9wfItbD-dHI).<br>
     <span>&#10038;</span> [STM32 Blue-pill VS Arduino NANO](https://www.youtube.com/watch?v=mdxmfjVhEus).<br>
+    <span>&#10038;</span> [Arduino IDE with ARM Cortex-M3 STM32](https://github.com/stm32duino/Arduino_Core_STM32/wiki/API).<br>
+    <span>&#10038;</span> [Analog/digital filters designer](https://www.micromodeler.com/dsp/).<br>
   </ul>
 </details>
 -->
@@ -46,7 +48,7 @@ The **Inductometer** project with autoranging aims to create a device to measure
 
 ### 👨‍💻️ __Firmware & Software__
 
-- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 14` `MSS ~ 0`
+- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 28` `MSS ~ 0`
 
 ### 📚️ __Documentation & Doxygen__
 

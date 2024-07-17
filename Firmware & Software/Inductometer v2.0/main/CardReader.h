@@ -11,4 +11,6 @@
 uint16_t read16(File f);
 uint32_t read32(File f);
 
+void printDirectory(File dir, int numTabs);
+
 #endif // _CARD_READER_H_
