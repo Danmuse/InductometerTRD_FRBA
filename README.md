@@ -48,14 +48,14 @@ The **Inductometer** project with autoranging aims to create a device to measure
 
 ### 👨‍💻️ __Firmware & Software__
 
-- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 28` `MSS ~ 0`
+- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 33` `MSS ~ 0`
 
 ### 📚️ __Documentation & Doxygen__
 
 - [ ] [Doxygen v1.9.6 implementation for code documentation.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/5) `DDM ~ 0`
 - [x] [Presentation of the project idea.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/6) `DDM ~ 4.5` `MSS ~ 1`
 - [ ] [Comprehensive and extensive project report.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/7) `DDM ~ 0.5` `MSS ~ 0`
-- [ ] [Illustrations of the experience and trials.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/8) `DDM ~ 0.5`
+- [ ] [Illustrations of the experience and trials.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/8) `DDM ~ 1`
 - [ ] [Load component datasheet.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/9) `DDM ~ 2`
 
 ---
