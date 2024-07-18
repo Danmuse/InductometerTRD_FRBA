@@ -834,6 +834,105 @@ int16_t SdFile::read(void* buf, uint16_t nbyte) {
 }
 //------------------------------------------------------------------------------
 /**
+   Read data from a file starting at the current position.
+
+   \param[out] buf Pointer to the location that will receive the data.
+
+   \param[in] nbyte Maximum number of bytes to read.
+
+   \return For success readTwoBytes() returns the number of bytes read.
+   A value less than \a nbyte, including zero, will be returned
+   if end of file is reached.
+   If an error occurs, readTwoBytes() returns -1.  Possible errors include
+   read() called before a file has been opened, corrupt file system
+   or an I/O error occurred.
+*/
+int16_t SdFile::readTwoBytes(void* buf, uint16_t nbyte) {
+  uint16_t* dst = reinterpret_cast<uint16_t*>(buf);
+
+  // error if not open or write only
+  if (!isOpen() || !(flags_ & O_READ)) {
+    return -1;
+  }
+
+  // Ensure that the number of bytes to read is even
+  nbyte &= ~1; // Make sure nbyte is even
+
+  // max bytes left in file
+  if (nbyte > (fileSize_ - curPosition_)) {
+    nbyte = fileSize_ - curPosition_;
+    nbyte &= ~1; // Ensure we read an even number of bytes
+  }
+
+  // amount left to read
+  uint16_t toRead = nbyte;
+  uint8_t tempBuf[2]; // Temporary buffer to hold bytes to combine
+
+  while (toRead > 0) {
+    uint32_t block;  // raw device block number
+    uint16_t offset = curPosition_ & 0X1FF;  // offset in block
+    if (type_ == FAT_FILE_TYPE_ROOT16) {
+      block = vol_->rootDirStart() + (curPosition_ >> 9);
+    } else {
+      uint8_t blockOfCluster = vol_->blockOfCluster(curPosition_);
+      if (offset == 0 && blockOfCluster == 0) {
+        // start of new cluster
+        if (curPosition_ == 0) {
+          // use first cluster in file
+          curCluster_ = firstCluster_;
+        } else {
+          // get next cluster from FAT
+          if (!vol_->fatGet(curCluster_, &curCluster_)) {
+            return -1;
+          }
+        }
+      }
+      block = vol_->clusterStartBlock(curCluster_) + blockOfCluster;
+    }
+    uint16_t n = toRead;
+
+    // amount to be read from current block
+    if (n > (512 - offset)) {
+      n = 512 - offset;
+    }
+
+    // Read one byte at a time if needed
+    if (n == 1) {
+      if (!vol_->readData(block, offset, 1, tempBuf)) {
+        return -1;
+      }
+      curPosition_++;
+      toRead--;
+      continue; // Skip combining since we can't have an odd number of bytes
+    }
+
+    // no buffering needed if n == 512 or user requests no buffering
+    if ((unbufferedRead() || n == 512) && block != SdVolume::cacheBlockNumber_) {
+      if (!vol_->readData(block, offset, n, tempBuf)) {
+        return -1;
+      }
+      for (int i = 0; i < n; i += 2) {
+        *dst++ = (tempBuf[i] | (tempBuf[i + 1] << 8));
+      }
+    } else {
+      // read block to cache and copy data to caller
+      if (!SdVolume::cacheRawBlock(block, SdVolume::CACHE_FOR_READ)) {
+        return -1;
+      }
+      uint8_t* src = SdVolume::cacheBuffer_.data + offset;
+      uint8_t* end = src + n;
+      while (src != end) {
+        *dst++ = (*src) | (*(src + 1) << 8);
+        src += 2;
+      }
+    }
+    curPosition_ += n;
+    toRead -= n;
+  }
+  return nbyte;
+}
+//------------------------------------------------------------------------------
+/**
    Read the next directory entry from a directory file.
 
    \param[out] dir The dir_t struct that will receive the data.

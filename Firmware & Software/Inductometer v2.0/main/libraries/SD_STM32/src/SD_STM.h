@@ -12,8 +12,8 @@
 
 */
 
-#ifndef __SD_H__
-#define __SD_H__
+#ifndef __SD_STM_H__
+#define __SD_STM_H__
 
 #include <Arduino.h>
 
@@ -41,6 +41,7 @@ namespace SDLib {
       virtual int available();
       virtual void flush();
       int read(void *buf, uint16_t nbyte);
+      int readTwoBytes(void *buf, uint16_t nbyte);
       boolean seek(uint32_t pos);
       uint32_t position();
       uint32_t size();

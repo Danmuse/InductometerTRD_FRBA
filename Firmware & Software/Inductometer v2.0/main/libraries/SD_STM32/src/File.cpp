@@ -12,7 +12,7 @@
 
 */
 
-#include <SD.h>
+#include <SD_STM.h>
 
 /* for debugging file open/close leaks
    uint8_t nfilecount=0;
@@ -103,6 +103,14 @@ int File::read() {
 int File::read(void *buf, uint16_t nbyte) {
   if (_file) {
     return _file->read(buf, nbyte);
+  }
+  return 0;
+}
+
+// buffered read for more efficient, high speed reading
+int File::readTwoBytes(void *buf, uint16_t nbyte) {
+  if (_file) {
+    return _file->readTwoBytes(buf, nbyte);
   }
   return 0;
 }

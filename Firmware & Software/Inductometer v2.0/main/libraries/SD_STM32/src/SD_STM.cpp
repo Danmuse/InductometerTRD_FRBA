@@ -50,7 +50,7 @@
 
 */
 
-#include "SD.h"
+#include "SD_STM.h"
 
 namespace SDLib {
 
