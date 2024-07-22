@@ -49,6 +49,7 @@ def main():
     pix = im.load()  # load pixel array
 
     for h in range(image_height):
+        # if (h > (59 + 4) and h < (180 + 4)): # mFrame.bin generated from 240x120 image
         for w in range(image_width):
             if ((h * 16 + w) % 16 == 0):
                 print (" ", file=outfile)

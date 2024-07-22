@@ -8,6 +8,7 @@
     <span>&#10038;</span> [STM32 Blue-pill VS Arduino NANO](https://www.youtube.com/watch?v=mdxmfjVhEus).<br>
     <span>&#10038;</span> [Arduino IDE with ARM Cortex-M3 STM32](https://github.com/stm32duino/Arduino_Core_STM32/wiki/API).<br>
     <span>&#10038;</span> [Analog/digital filters designer](https://www.micromodeler.com/dsp/).<br>
+    <span>&#10038;</span> [Debug the STM32 using the Arduino IDE](https://community.st.com/t5/stm32-mcus/how-to-program-and-debug-the-stm32-using-the-arduino-ide/ta-p/608514).<br>
   </ul>
 </details>
 -->
@@ -48,14 +49,14 @@ The **Inductometer** project with autoranging aims to create a device to measure
 
 ### 👨‍💻️ __Firmware & Software__
 
-- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 33` `MSS ~ 0`
+- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 50` `MSS ~ 0`
 
 ### 📚️ __Documentation & Doxygen__
 
 - [ ] [Doxygen v1.9.6 implementation for code documentation.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/5) `DDM ~ 0`
 - [x] [Presentation of the project idea.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/6) `DDM ~ 4.5` `MSS ~ 1`
 - [ ] [Comprehensive and extensive project report.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/7) `DDM ~ 0.5` `MSS ~ 0`
-- [ ] [Illustrations of the experience and trials.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/8) `DDM ~ 1`
+- [ ] [Illustrations of the experience and trials.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/8) `DDM ~ 2`
 - [ ] [Load component datasheet.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/9) `DDM ~ 2`
 
 ---

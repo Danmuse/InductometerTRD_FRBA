@@ -4,10 +4,12 @@
 #if (__STM32F1__) // bluepill
 #define TFT_DC  PB1
 #define TFT_RST PB0
+#define TFT_CS  PA3
 #include <Arduino_ST7789_STM.h>
 #else
 #define TFT_DC  8
 #define TFT_RST 9
+#define TFT_CS  7
 #include <Arduino_ST7789_Fast.h>
 //#include <Arduino_ST7789.h>
 #endif
