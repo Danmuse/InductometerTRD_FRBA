@@ -37,7 +37,7 @@ The **Inductometer** project with autoranging aims to create a device to measure
     <span>&#10038;</span> ACS712T-5A Current sensor ~ Maximum 5A. (Q-meter)<br>
     <span>&#10038;</span> FZ0430 Voltage sensor ~ Maximum 25V. (Q-meter)<br> -->
     <span>&#10038;</span> Capacitor bank with different types.<br>
-    <span>&#10038;</span> <b>KY-040</b> Rotary encoder.<br>
+    <span>&#10038;</span> <b>KY-040</b> Incremental rotary encoder.<br>
     <span>&#10038;</span> IPS HD TFT <b>ST7789</b>.<br>
     <span>&#10038;</span> Slide power switch.<br>
     <!-- <span>&#10038;</span> EEPROM Memory FM24C16U 16KB. (Optional)<br> -->

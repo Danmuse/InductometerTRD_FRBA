@@ -20,6 +20,7 @@ uint16_t readBlock(File f, uint16_t *block, size_t nbyte) {
   return f.readTwoBytes(block, nbyte);
 }
 
+/*
 void printDirectory(File dir, int numTabs) {
   while (true) {
     File entry = dir.openNextFile();
@@ -37,3 +38,4 @@ void printDirectory(File dir, int numTabs) {
     entry.close();
   }
 }
+*/
