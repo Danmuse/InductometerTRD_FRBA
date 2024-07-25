@@ -11,7 +11,11 @@
 #define SCR_WD 240
 #define SCR_HT 240
 
-#include "gradientMenu.h"
+#include "RREFont.h"
+// #include "rre_12x16.h"
+// #include "rre_bold13x20v.h"
+
+#include "pitches.h"
 
 void drawImage(Arduino_ST7789 &tft, const uint16_t *image);
 void drawGradientMenu(Arduino_ST7789 &tft);

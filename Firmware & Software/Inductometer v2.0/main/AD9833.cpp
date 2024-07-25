@@ -1,5 +1,6 @@
 #include "AD9833.h"
 
+/*
 void AD9833setup(void) {
    pinMode(FSYNC, OUTPUT);
    digitalWrite(FSYNC, HIGH);
@@ -35,6 +36,8 @@ void WriteRegister(int dat) {
    digitalWrite(FSYNC, HIGH);
    SPI.setDataMode(SPI_MODE0);
 }
+
+*/
 
 /*
 

@@ -20,6 +20,8 @@
 #define DEFAULT_LOWER_LIMIT 0
 #define DEFAULT_UPPER_LIMIT 100
 
+#define DEBOUNCE_DELAY_SWITCH 30
+
 class RotaryEncoder {
   public:
     RotaryEncoder() = delete;
@@ -27,16 +29,19 @@ class RotaryEncoder {
     RotaryEncoder(byte buttonPin, byte clockPin, byte dataPin);
 
     void rotaryEncoderCallback(void);
-    void setPosition(int16_t position);
-    int16_t getPosition(void) const;
-    bool buttonPressed(void) const;
-    void changeRange(int16_t lowerLimit = DEFAULT_LOWER_LIMIT, int16_t upperLimit = DEFAULT_UPPER_LIMIT);
+    void setPosition(int32_t position);
+    int32_t getPosition(void) const;
+    bool buttonPressed(void);
+    void mismatchEngaged(void);
+    void setMultiplier(int32_t multiplier, bool multiplierUsage = true);
+    void usageMultiplier(bool multiplierUsage);
+    void changeRange(int32_t lowerLimit = DEFAULT_LOWER_LIMIT, int32_t upperLimit = DEFAULT_UPPER_LIMIT);
     
     virtual ~RotaryEncoder() = default;
   private:
-    bool m_clockwiseRotationStatus, m_counterclockwiseRotationStatus, m_buttonUsage;
+    bool m_clockwiseRotationStatus, m_counterclockwiseRotationStatus, m_mismatchLastState, m_mismatchFlag, m_multiplierUsage, m_lastButtonState, m_buttonState, m_buttonUsage;
     byte m_buttonPin, m_clockPin, m_dataPin;
-    int16_t m_lowerLimit, m_upperLimit, m_position;
+    int32_t m_lowerLimit, m_upperLimit, m_position, m_multiplier;
 };
 
 #endif // _ROTARY_ENCODER_H_
