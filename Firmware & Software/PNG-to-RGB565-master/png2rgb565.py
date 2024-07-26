@@ -71,6 +71,7 @@ def main():
                 B = (pix[w, h][2] >> 3)
 
                 rgb = (R << 11) | (G << 5) | (B << 0)
+                # if rgb == 0: rgb = 0x0020 # mFrame.bin generated from 240x120 image
 
                 if isSWAP:
                     swap_string_low = rgb >> 8
