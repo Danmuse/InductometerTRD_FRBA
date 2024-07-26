@@ -4,15 +4,24 @@
 #include <Arduino.h>
 #include "hardwareConfig.h"
 
+#define ERR_SD_NOT_FOUND "MICRO SD CARD\\nNOT FOUND"
+#define ERR_SECTION_NOT_AVAILABLE "NOT AVAILABLE"
+
 #define FLOAT_DECIMALS_PRECISION 4
 #define SCIENTIFIC_NOTATION_EXPONENTIAL_POSITION 4
 
-/*
-bool isNumberExt(uint8_t character) {
+static bool isNumberExt(uint8_t character);
+
+static void reverse(char *str, byte length);
+static uint8_t intToStr(int32_t num, char *str, int decimals);
+static char *cftoa(float num, char *str, uint8_t decimals);
+static char *citoa(int32_t num, char *str, uint8_t base);
+
+static bool isNumberExt(uint8_t character) {
   return isdigit(character) || character=='-' || character=='+' || character=='.' || character==' ';
 }
 
-void reverse(char str[], byte length) {
+static void reverse(char *str, byte length) {
   uint8_t start = 0, end = length - 1;
   while (start < end) {
     char temp = str[start];
@@ -22,48 +31,22 @@ void reverse(char str[], byte length) {
   }
 }
 
-char *citoa(int32_t num, char* str, uint8_t base) {
-  byte idx = 0; bool isNegative = false;
-  if (num == 0) {
-    str[idx++] = '0';
-    str[idx] = '\0';
-    return str;
-  }
-  // In standard itoa(), negative numbers are handled
-  // only with base 10. Otherwise numbers are
-  // considered unsigned.
-  if (num < 0 && base == 10) {
-    isNegative = true;
-    num *= -1;
-  }
-  while (num != 0) { // Process individual digits
-    byte rem = num % base;
-    str[idx++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
-    num = num / base;
-  }
-  if (isNegative) str[idx++] = '-'; // If number is negative, append '-'
-  str[idx] = '\0'; // Append string terminator
-  reverse(str, idx); // Reverse the string
-  return str;
-}
-
-uint8_t intToStr(int32_t x, char str[], int decimals) { 
+static uint8_t intToStr(int32_t num, char *str, int decimals) { 
   uint8_t idx = 0;
-  if (x == 0) str[idx++] = '0';
+  if (num == 0) str[idx++] = '0';
   else {
-    while (x) { 
-      str[idx++] = (x % 10) + '0'; 
-      x = x / 10; 
+    while (num) { 
+      str[idx++] = (num % 10) + '0'; 
+      num /= 10; 
     }
   }
-  // If number of digits required is more
   while (idx < decimals) str[idx++] = '0'; 
   reverse(str, idx); 
   str[idx] = '\0'; 
   return idx; 
 }
 
-void cftoa(float num, char* str, uint8_t decimals) { 
+static char *cftoa(float num, char *str, uint8_t decimals) {
   if (num < 0) {
     *str++ = '-';
     num *= -1;
@@ -76,8 +59,38 @@ void cftoa(float num, char* str, uint8_t decimals) {
     floatPart *= pow(10, decimals); // Get the value of fraction part upto given number of points after dot.
     intToStr((int32_t)round(floatPart), str + idx, decimals); 
   }
+  return str;
 }
 
-*/
+static char *citoa(int32_t num, char *str, uint8_t base) {
+  byte idx = 0; 
+  bool isNegative = false;
+  if (num == 0) {
+    str[idx++] = '0';
+    str[idx] = '\0';
+    return str;
+  }
+  if (num < 0 && base == 10) {
+    isNegative = true;
+    num = -num;
+  }
+  if (base == 10) idx = intToStr(num, str, 0);
+  else {
+    while (num != 0) {
+      byte rem = num % base;
+      str[idx++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+      num = num / base;
+    }
+    str[idx] = '\0';
+    reverse(str, idx);
+  }
+  if (isNegative) {
+    for (byte jdx = idx; jdx > 0; jdx--) 
+      str[jdx] = str[jdx - 1];
+    str[0] = '-';
+    str[++idx] = '\0';
+  }
+  return str;
+}
 
 #endif // _UTILS_H_

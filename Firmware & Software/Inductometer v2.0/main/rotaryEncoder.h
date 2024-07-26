@@ -1,12 +1,12 @@
 /*!
- * @file RotaryEncoder.h
+ * @file rotaryEncoder.h
  * @par Author & Doxygen Editor
  *  Daniel Di Módica ~ <a href = "mailto: danifabriziodmodica@gmail.com">danifabriziodmodica@@gmail.com</a>
  * @date 16/03/2024 16:05:47
  * @version 1.0
  * @brief Class for controlling KY040 Rotary Encoder
  * @details @par Description
- *  The <b>RotaryEncoder</b> class provides a set of functions for interfacing with and controlling the KY040 Rotary Encoder. @n
+ *  The <b>RotaryEncoder</b> class provides a set of functions for interfacing with and controlling the KY040 Incremental rotary encoder. @n
  *  This class enables users to easily monitor and handle rotational movements of the encoder, allowing for precise input control in various applications. @n
  *  It abstracts the low-level interactions with the rotary encoder, providing a high-level interface for detecting changes in position, handling rotation events, @n
  *  and implementing custom functionality based on the encoder's input.
@@ -43,5 +43,7 @@ class RotaryEncoder {
     byte m_buttonPin, m_clockPin, m_dataPin;
     int32_t m_lowerLimit, m_upperLimit, m_position, m_multiplier;
 };
+
+extern RotaryEncoder g_encoder;
 
 #endif // _ROTARY_ENCODER_H_

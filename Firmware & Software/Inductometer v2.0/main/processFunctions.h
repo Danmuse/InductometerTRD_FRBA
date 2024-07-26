@@ -4,7 +4,8 @@
 #include "cardReader.h"
 #include "rotaryEncoder.h"
 #include "ST7789.h"
-#include "AD9833.h"
+
+#include "processActions.h"
 
 /// Main menu panel
 
@@ -12,7 +13,7 @@
 #define ENCODER_UPPER_LIMIT_MENU 3 // OP_GENERATE_SIGNALS
 
 #define FRAME_GRAPH_HT 120
-#define BACKGROUND_COLOR_MENU 0x0021
+#define BACKGROUND_COLOR_MENU DEFAULT_BACKGROUND_COLOR
 #define TEXT_COLOR_MENU 0xEF7D
 
 /// Generator signal settings panel
@@ -78,11 +79,13 @@
 
 /// General settings panel
 
-#define LETTER_SPACING_SIZE 1
+#define LETTER_SPACING_SIZE DEFAULT_LETTER_SPACING_SIZE
 #define MAX_SIGNAL_SETTING_SIZE 12 // Longest string to store is "12500000 Hz"
 
 #define INACTIVE_BLINK_DIGIT_TIME 230
 #define ACTIVE_BLINK_DIGIT_TIME 850
+
+#define CARD_CONNECTION_ATTEMPTS 3
 
 typedef enum {
   TYPE_NONE = 0,
@@ -108,10 +111,12 @@ typedef enum {
   SIG_OP_SET_FREQ = 4
 } sig_operation_t;
 
-void printFromSD(Arduino_ST7789 &tft, const char *file);
-void displayMenu(Arduino_ST7789 &tft, RotaryEncoder &encoder, RREFont &font, operation_t &operation);
-void processOperation(Arduino_ST7789 &tft, RotaryEncoder &encoder, RREFont &font, operation_t &operation);
+extern bool cardPlugged;
 
-void settingSignal(Arduino_ST7789 &tft, RotaryEncoder &encoder, RREFont &font);
+void printFromSD(const char *file);
+void displayMenu(operation_t &operation);
+void processOperation(operation_t &operation);
+
+void settingSignal(void);
 
 #endif // _PROCESS_FUNCTIONS_H_

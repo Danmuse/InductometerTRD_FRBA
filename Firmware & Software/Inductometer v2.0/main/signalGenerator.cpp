@@ -1,4 +1,4 @@
-#include "AD9833.h"
+#include "signalGenerator.h"
 
 /*
 void AD9833setup(void) {

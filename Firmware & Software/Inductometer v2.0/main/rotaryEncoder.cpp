@@ -1,12 +1,12 @@
 /*/*!
- * @file RotaryEncoder.cpp
+ * @file rotaryEncoder.cpp
  * @par Author & Doxygen Editor
  *  Daniel Di Módica ~ <a href = "mailto: danifabriziodmodica@gmail.com">danifabriziodmodica@@gmail.com</a>
  * @date 16/03/2024 16:05:47
  * @version 1.0
  */
 
-#include "RotaryEncoder.h"
+#include "rotaryEncoder.h"
 
 RotaryEncoder::RotaryEncoder(byte clockPin, byte dataPin) :
 m_clockwiseRotationStatus{true},
@@ -148,3 +148,5 @@ void RotaryEncoder::changeRange(int32_t lowerLimit, int32_t upperLimit) {
   if (this->m_position < lowerLimit) this->m_position = lowerLimit;
   else if (this->m_position > upperLimit) this->m_position = upperLimit;
 }
+
+RotaryEncoder g_encoder(KY040_SW_PIN, KY040_CLK_PIN, KY040_DT_PIN);

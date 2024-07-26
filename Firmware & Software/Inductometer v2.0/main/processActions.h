@@ -1,7 +1,7 @@
 #ifndef _PROCESS_ACTIONS_H_
 #define _PROCESS_ACTIONS_H_
 
-// #include "processFunctions.h"
+#include "signalGenerator.h"
 
 /*
 void generateSignal(void);
