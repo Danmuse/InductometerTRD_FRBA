@@ -1,5 +1,6 @@
 #include "ST7789.h"
 
+SPISettings ST7789_SPISettings(SPI_PERIPHERAL_SPEED, MSBFIRST, SPI_MODE3, DATA_SIZE_16BIT);
 Arduino_ST7789 g_tft(TFT_DC, TFT_RST, TFT_CS);
 RREFont g_font;
 

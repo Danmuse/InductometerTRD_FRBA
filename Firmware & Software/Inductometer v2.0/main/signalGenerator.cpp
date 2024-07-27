@@ -1,5 +1,8 @@
 #include "signalGenerator.h"
 
+SPISettings AD9833_SPISettings(SPI_PERIPHERAL_SPEED, MSBFIRST, SPI_MODE2);
+AD9833 g_signalGenerator(AD9833_FSYNC);
+
 /*
 void AD9833setup(void) {
    pinMode(FSYNC, OUTPUT);

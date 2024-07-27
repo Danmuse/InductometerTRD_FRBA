@@ -2,7 +2,6 @@
 #define _MAIN_H_
 
 #include "processFunctions.h"
-#include "processActions.h"
 
 // WARNING: The total memory used for parity checking in addition to the regular SRAM usage is 2560 Bytes,
 //          that is, 12.8% of the SRAM memory occupied for the STM32F103x family of microcontrollers.

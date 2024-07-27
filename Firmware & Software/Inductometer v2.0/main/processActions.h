@@ -3,9 +3,6 @@
 
 #include "signalGenerator.h"
 
-/*
-void generateSignal(void);
-void settingSignal(Arduino_ST7789 &tft, RotaryEncoder &encoder, RREFont &font);
-*/
+void generateSignal(char *strFrequency, char *strSignalType);
 
 #endif // _PROCESS_ACTIONS_H_

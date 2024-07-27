@@ -5,6 +5,8 @@ operation_t instr_operation = OP_NONE;
 void setup(void) {
   Serial.begin(115200);
   g_font.init(customRect, SCR_WD, SCR_HT);
+  g_signalGenerator.begin();
+  g_signalGenerator.setWave(AD9833_OFF);
 
   if (SD.begin(SD_CS_PIN)) {
     cardPlugged = true;
@@ -12,13 +14,13 @@ void setup(void) {
     // printDirectory(root, 0);   // Print all files names and sizes
     // root.close();              // Close the opened root
   }
-  
+
   g_tft.begin();
   g_tft.clearScreen();
   if (cardPlugged) printFromSD("instr.bin");
   else drawGradientFault(ERR_SD_NOT_FOUND);
-  delay(2000);
   g_encoder.changeRange(ENCODER_LOWER_LIMIT_MENU, ENCODER_UPPER_LIMIT_MENU);
+  delay(2000);
 }
 
 void loop(void) {

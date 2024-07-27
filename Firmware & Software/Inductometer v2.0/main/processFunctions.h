@@ -1,7 +1,7 @@
 #ifndef _PROCESS_FUNCTIONS_H_
 #define _PROCESS_FUNCTIONS_H_
 
-#include "cardReader.h"
+#include "SDCard.h"
 #include "rotaryEncoder.h"
 #include "ST7789.h"
 

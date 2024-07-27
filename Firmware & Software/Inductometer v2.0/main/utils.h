@@ -3,6 +3,9 @@
 
 #include <Arduino.h>
 #include "hardwareConfig.h"
+#include <SPI.h>
+
+#define SPI_PERIPHERAL_SPEED (36000000UL)
 
 #define ERR_SD_NOT_FOUND "MICRO SD CARD\\nNOT FOUND"
 #define ERR_SECTION_NOT_AVAILABLE "NOT AVAILABLE"
@@ -11,11 +14,12 @@
 #define SCIENTIFIC_NOTATION_EXPONENTIAL_POSITION 4
 
 static bool isNumberExt(uint8_t character);
-
 static void reverse(char *str, byte length);
 static uint8_t intToStr(int32_t num, char *str, int decimals);
 static char *cftoa(float num, char *str, uint8_t decimals);
 static char *citoa(int32_t num, char *str, uint8_t base);
+
+static void spiTransaction(SPISettings settings, void (*operation)());
 
 static bool isNumberExt(uint8_t character) {
   return isdigit(character) || character=='-' || character=='+' || character=='.' || character==' ';
@@ -91,6 +95,12 @@ static char *citoa(int32_t num, char *str, uint8_t base) {
     str[++idx] = '\0';
   }
   return str;
+}
+
+static void spiTransaction(SPISettings settings, void (*operation)()) {
+    SPI.endTransaction();
+    SPI.beginTransaction(settings);
+    operation();
 }
 
 #endif // _UTILS_H_

@@ -26,7 +26,7 @@ The **Inductometer** project with autoranging aims to create a device to measure
     <span>&#10038;</span> <b>STM32F103C8T6 Blue-pill board</b>.<br>
     <span>&#10038;</span> Rechargeable polymer lithium battery.<br>
     <span>&#10038;</span> <b>TP4056</b> Charging module for 3.7V/1A Li-ion battery.<br>
-    <span>&#10038;</span> <b>AD9833</b> Sinusoidal/triangular/square signal generator (0.1Hz ~ 1.25MHz).<br>
+    <span>&#10038;</span> <b>AD9833</b> Sinusoidal/triangular/square signal generator (0.1Hz ~ 12.5MHz).<br>
     <span>&#10038;</span> <b>TLV3501AID</b> High speed comparator with shutdown.<br>
     <span>&#10038;</span> <b>MT3608</b> Step up (2V ~ 28V/2A).<br>
     <span>&#10038;</span> <b>LM393</b> Operational amplifier.<br>
@@ -49,7 +49,7 @@ The **Inductometer** project with autoranging aims to create a device to measure
 
 ### 👨‍💻️ __Firmware & Software__
 
-- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 78` `MSS ~ 0`
+- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 85` `MSS ~ 0`
 
 ### 📚️ __Documentation & Doxygen__
 

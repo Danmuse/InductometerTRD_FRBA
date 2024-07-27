@@ -253,28 +253,14 @@ static void printMenuGraphics(void) {
   uint8_t chunkSize = 30; // It is recommended not to modify this variable so as not to slow down or affect the representation of the image.
   // If the value of "chunkSize" is 30, 14400 bytes will be stored, that is, 72% of the SRAM memory occupied for the STM32F103x family of microcontrollers.
   uint16_t image[SCR_WD * chunkSize];
-
-  /*
-  if (!cardPlugged) {
-    uint8_t attempts = 0;
-    drawGradientFault();
-    while (attempts < CARD_CONNECTION_ATTEMPTS) {
-      if (SD.begin(SD_CS_PIN)) {
-        cardPlugged = true;
-        break;
-      }
-      attempts++;
-    }
-    SPI.setDataSize(DATA_SIZE_16BIT);
-  }
-  */
   
   drawGradientMenu(true);
   if (!cardPlugged) return;
+  else spiTransaction(SDCard_SPISettings, []() { });
   File fileImg = SD.open("mSFrame.bin", FILE_READ);
   if (!fileImg) {
     cardPlugged = false;
-    SPI.setDataSize(DATA_SIZE_16BIT);
+    spiTransaction(ST7789_SPISettings, []() { });
     return;
   }
 
@@ -282,7 +268,7 @@ static void printMenuGraphics(void) {
     // NOTE: Optimized alternative. An additional 4% of SRAM memory is used for the STM32 family of microcontrollers.
     for (uint8_t jdx = 0; jdx < (SCR_WD * chunkSize) / 240; jdx++) 
       readBlock(fileImg, &(image[jdx * 240]), sizeof(uint16_t) * 240);
-    SPI.setDataSize(DATA_SIZE_16BIT);
+    spiTransaction(ST7789_SPISettings, []() { });
     g_tft.drawImage(0, idx * chunkSize + (FRAME_GRAPH_HT / 2), SCR_WD, chunkSize, image);    
   }
   fileImg.close();
@@ -296,6 +282,7 @@ void printFromSD(const char *file) {
   if (!cardPlugged) {
     uint8_t attempts = 0;
     drawGradientFault(ERR_SD_NOT_FOUND);
+    spiTransaction(SDCard_SPISettings, []() { });
     while (attempts < CARD_CONNECTION_ATTEMPTS) {
       if (SD.begin(SD_CS_PIN)) {
         cardPlugged = true;
@@ -303,15 +290,16 @@ void printFromSD(const char *file) {
       }
       attempts++;
     }
-    SPI.setDataSize(DATA_SIZE_16BIT);
+    spiTransaction(ST7789_SPISettings, []() { });
   }
 
   g_tft.fillRect(0, 0, SCR_WD, SCR_HT, DEFAULT_BACKGROUND_COLOR);
   if (!cardPlugged) return;
+  else spiTransaction(SDCard_SPISettings, []() { });
   File fileImg = SD.open(file, FILE_READ);
   if (!fileImg) {
     cardPlugged = false;
-    SPI.setDataSize(DATA_SIZE_16BIT);
+    spiTransaction(ST7789_SPISettings, []() { });
     return;
   }
 
@@ -329,7 +317,7 @@ void printFromSD(const char *file) {
     // NOTE: Optimized alternative. An additional 4% of SRAM memory is used for the STM32 family of microcontrollers.
     for (uint8_t jdx = 0; jdx < (SCR_WD * chunkSize) / 240; jdx++) 
       readBlock(fileImg, &(image[jdx * 240]), sizeof(uint16_t) * 240);
-    SPI.setDataSize(DATA_SIZE_16BIT);
+    spiTransaction(ST7789_SPISettings, []() { });
     g_tft.drawImage(0, idx * chunkSize, SCR_WD, chunkSize, image);
   }
   // uint32_t result = millis() - timeElapsed;
@@ -437,36 +425,36 @@ void settingSignal(void) {
   while (true) {
     static bool alreadyDrawPanel = false;
     static sig_operation_t signalOperation = SIG_OP_CANCEL;
-    static char defaultMultiplier[MAX_SIGNAL_SETTING_SIZE];
-    static char defaultSignalType[MAX_SIGNAL_SETTING_SIZE];
-    static char defaultFrequency[MAX_SIGNAL_SETTING_SIZE];
+    static char strMultiplier[MAX_SIGNAL_SETTING_SIZE];
+    static char strSignalType[MAX_SIGNAL_SETTING_SIZE];
+    static char strFrequency[MAX_SIGNAL_SETTING_SIZE];
     g_encoder.rotaryEncoderCallback();
     if (!alreadyDrawPanel) {
       g_encoder.mismatchEngaged();
-      if (*defaultMultiplier == '\0' || *defaultSignalType == '\0' || *defaultFrequency == '\0') {
+      if (*strMultiplier == '\0' || *strSignalType == '\0' || *strFrequency == '\0') {
 #ifndef MULTIPLIER_EXPONENTIAL_NOTATION_REPRESENTATION
-        defaultMultiplier[0] = 'x';
-        citoa(DEFAULT_SIGNAL_MULTIPLIER, &(defaultMultiplier[1]), 10);
+        strMultiplier[0] = 'x';
+        citoa(DEFAULT_SIGNAL_MULTIPLIER, &(strMultiplier[1]), 10);
 #else
-        strncpy(defaultMultiplier, "x10^", strlen("x10^"));
-        citoa(DEFAULT_SIGNAL_MULTIPLIER, &(defaultMultiplier[SCIENTIFIC_NOTATION_EXPONENTIAL_POSITION]), 10);
+        strncpy(strMultiplier, "x10^", strlen("x10^"));
+        citoa(DEFAULT_SIGNAL_MULTIPLIER, &(strMultiplier[SCIENTIFIC_NOTATION_EXPONENTIAL_POSITION]), 10);
 #endif // !defined(MULTIPLIER_EXPONENTIAL_NOTATION_REPRESENTATION)
         if (DEFAULT_SIGNAL_TYPE == SIG_SINE) {
-          strncpy(defaultSignalType, "SINE", strlen("SINE"));
-          defaultSignalType[strlen("SINE")] = '\0';
+          strncpy(strSignalType, "SINE", strlen("SINE"));
+          strSignalType[strlen("SINE")] = '\0';
         } else if (DEFAULT_SIGNAL_TYPE == SIG_SQUARE) {
-          strncpy(defaultSignalType, "SQUARE", strlen("SQUARE"));
-          defaultSignalType[strlen("SQUARE")] = '\0';
+          strncpy(strSignalType, "SQUARE", strlen("SQUARE"));
+          strSignalType[strlen("SQUARE")] = '\0';
         } else if (DEFAULT_SIGNAL_TYPE == SIG_TRIANGLE) {
-          strncpy(defaultSignalType, "TRIANG", strlen("TRIANG"));
-          defaultSignalType[strlen("TRIANG")] = '\0';
+          strncpy(strSignalType, "TRIANG", strlen("TRIANG"));
+          strSignalType[strlen("TRIANG")] = '\0';
         }
-        citoa(DEFAULT_SIGNAL_FREQUENCY, &(defaultFrequency[0]), 10);
-        strncpy(&(defaultFrequency[strlen(defaultFrequency)]), "Hz", strlen("Hz"));
-        defaultFrequency[strlen(defaultFrequency)] = '\0';
-        signal_displayValue(defaultMultiplier, HORIZONTAL_PADDING_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_HIBRID);
-        signal_displayValue(defaultSignalType, HORIZONTAL_PADDING_MIDDLE_CHARTS + MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_STRING);
-        signal_displayValue(defaultFrequency, HORIZONTAL_PADDING_FILL_OUT_CHARTS, VERTICAL_PADDING_CHARTS(2), 0, TYPE_HIBRID);
+        citoa(DEFAULT_SIGNAL_FREQUENCY, &(strFrequency[0]), 10);
+        strncpy(&(strFrequency[strlen(strFrequency)]), "Hz", strlen("Hz"));
+        strFrequency[strlen(strFrequency)] = '\0';
+        signal_displayValue(strMultiplier, HORIZONTAL_PADDING_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_HIBRID);
+        signal_displayValue(strSignalType, HORIZONTAL_PADDING_MIDDLE_CHARTS + MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_STRING);
+        signal_displayValue(strFrequency, HORIZONTAL_PADDING_FILL_OUT_CHARTS, VERTICAL_PADDING_CHARTS(2), 0, TYPE_HIBRID);
       }
       alreadyDrawPanel = true;
     }
@@ -476,9 +464,9 @@ void settingSignal(void) {
       signal_drawCharts(MARGIN_MIDDLE_CHARTS, VERTICAL_POSITION_TITLE_CHARTS(1), WIDTH_MIDDLE_CHARTS, HEIGHT_CHARTS, "MULTIPLIER");
       signal_drawCharts(MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_POSITION_TITLE_CHARTS(1), WIDTH_MIDDLE_CHARTS, HEIGHT_CHARTS, "SIG. TYPE");
       signal_drawCharts(MARGIN_FILL_OUT_CHARTS, VERTICAL_POSITION_TITLE_CHARTS(2), WIDTH_FILL_OUT_CHARTS, HEIGHT_CHARTS, "FREQUENCY");
-      signal_displayValue(defaultMultiplier, HORIZONTAL_PADDING_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_HIBRID);
-      signal_displayValue(defaultSignalType, HORIZONTAL_PADDING_MIDDLE_CHARTS + MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_STRING);
-      signal_displayValue(defaultFrequency, HORIZONTAL_PADDING_FILL_OUT_CHARTS, VERTICAL_PADDING_CHARTS(2), 0, TYPE_HIBRID);
+      signal_displayValue(strMultiplier, HORIZONTAL_PADDING_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_HIBRID);
+      signal_displayValue(strSignalType, HORIZONTAL_PADDING_MIDDLE_CHARTS + MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_STRING);
+      signal_displayValue(strFrequency, HORIZONTAL_PADDING_FILL_OUT_CHARTS, VERTICAL_PADDING_CHARTS(2), 0, TYPE_HIBRID);
       g_tft.fillRect(0, 0, SCR_WD, 44, BACKGROUND_CHARTS_COLOR);
       g_tft.drawFastHLine(0, 44, SCR_WD, FRAME_PANEL_ELEMENTS_COLOR);
       g_tft.drawFastHLine(0, 45, SCR_WD, FRAME_PANEL_ELEMENTS_COLOR);
@@ -496,19 +484,19 @@ void settingSignal(void) {
           configFont(g_font, &rreInstance_12x16, PANEL_ELEMENTS_COLOR(true), 1, 2, 2, 2, 10);
           g_font.printStr(ALIGN_CENTER,8,"PRESS TO SET");
           signal_drawCharts(MARGIN_MIDDLE_CHARTS, VERTICAL_POSITION_TITLE_CHARTS(1), WIDTH_MIDDLE_CHARTS, HEIGHT_CHARTS, "MULTIPLIER", true);
-          signal_displayValue(defaultMultiplier, HORIZONTAL_PADDING_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_HIBRID);
+          signal_displayValue(strMultiplier, HORIZONTAL_PADDING_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_HIBRID);
           break;
         case SIG_OP_SET_TYPE:
           configFont(g_font, &rreInstance_12x16, PANEL_ELEMENTS_COLOR(true), 1, 2, 2, 2, 10);
           g_font.printStr(ALIGN_CENTER,8,"PRESS TO SET");
           signal_drawCharts(MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_POSITION_TITLE_CHARTS(1), WIDTH_MIDDLE_CHARTS, HEIGHT_CHARTS, "SIG. TYPE", true);
-          signal_displayValue(defaultSignalType, HORIZONTAL_PADDING_MIDDLE_CHARTS + MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_STRING);
+          signal_displayValue(strSignalType, HORIZONTAL_PADDING_MIDDLE_CHARTS + MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_STRING);
           break;
         case SIG_OP_SET_FREQ:
           configFont(g_font, &rreInstance_12x16, PANEL_ELEMENTS_COLOR(true), 1, 2, 2, 2, 10);
           g_font.printStr(ALIGN_CENTER,8,"PRESS TO SET");
           signal_drawCharts(MARGIN_FILL_OUT_CHARTS, VERTICAL_POSITION_TITLE_CHARTS(2), WIDTH_FILL_OUT_CHARTS, HEIGHT_CHARTS, "FREQUENCY", true);
-          signal_displayValue(defaultFrequency, HORIZONTAL_PADDING_FILL_OUT_CHARTS, VERTICAL_PADDING_CHARTS(2), 0, TYPE_HIBRID);
+          signal_displayValue(strFrequency, HORIZONTAL_PADDING_FILL_OUT_CHARTS, VERTICAL_PADDING_CHARTS(2), 0, TYPE_HIBRID);
           break;
         default:
           break;
@@ -523,32 +511,33 @@ void settingSignal(void) {
         signal_drawCharts(MARGIN_MIDDLE_CHARTS, VERTICAL_POSITION_TITLE_CHARTS(1), WIDTH_MIDDLE_CHARTS, HEIGHT_CHARTS, "MULTIPLIER", false, false);
         signal_drawCharts(MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_POSITION_TITLE_CHARTS(1), WIDTH_MIDDLE_CHARTS, HEIGHT_CHARTS, "SIG. TYPE", false, false);
         signal_drawCharts(MARGIN_FILL_OUT_CHARTS, VERTICAL_POSITION_TITLE_CHARTS(2), WIDTH_FILL_OUT_CHARTS, HEIGHT_CHARTS, "FREQUENCY", false, false);
-        signal_displayValue(defaultMultiplier, HORIZONTAL_PADDING_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_HIBRID, false);
-        signal_displayValue(defaultSignalType, HORIZONTAL_PADDING_MIDDLE_CHARTS + MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_STRING, false);
-        signal_displayValue(defaultFrequency, HORIZONTAL_PADDING_FILL_OUT_CHARTS, VERTICAL_PADDING_CHARTS(2), 0, TYPE_HIBRID, false);
+        signal_displayValue(strMultiplier, HORIZONTAL_PADDING_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_HIBRID, false);
+        signal_displayValue(strSignalType, HORIZONTAL_PADDING_MIDDLE_CHARTS + MARGIN_LEFT_CENTER_MIDDLE_CHARTS, VERTICAL_PADDING_CHARTS(1), 0, TYPE_STRING, false);
+        signal_displayValue(strFrequency, HORIZONTAL_PADDING_FILL_OUT_CHARTS, VERTICAL_PADDING_CHARTS(2), 0, TYPE_HIBRID, false);
         g_tft.fillRect(0, 0, SCR_WD, 44, BACKGROUND_CHARTS_COLOR);
         g_tft.drawFastHLine(0, 44, SCR_WD, FRAME_PANEL_ELEMENTS_COLOR);
         g_tft.drawFastHLine(0, 45, SCR_WD, FRAME_PANEL_ELEMENTS_COLOR);
         g_tft.drawFastHLine(0, 46, SCR_WD, FRAME_PANEL_ELEMENTS_COLOR);
         configFont(g_font, &rreInstance_12x16, PANEL_ELEMENTS_ACTIVE_COLOR(false), 1, 2, 2, 2, 10);
         g_font.printStr(ALIGN_CENTER,8,"PRESS TO STOP");
-        
-        while (!g_encoder.buttonPressed()); // TODO: It's not implemented yet
-
+        generateSignal(strFrequency, strSignalType);
+        while (!g_encoder.buttonPressed());
+        g_signalGenerator.setWave(AD9833_OFF);
+        spiTransaction(ST7789_SPISettings, []() { });
         g_encoder.setPosition(SIG_OP_COMPLETE);
         signalOperation = SIG_OP_CANCEL;
       } else if (signalOperation == SIG_OP_SET_MULT) {
-        changeSettingSignal(defaultMultiplier, signalOperation);
+        changeSettingSignal(strMultiplier, signalOperation);
         g_encoder.changeRange(ENCODER_LOWER_LIMIT_SIGNAL_PANEL, ENCODER_UPPER_LIMIT_SIGNAL_PANEL);
         g_encoder.setPosition(SIG_OP_SET_MULT);
         signalOperation = SIG_OP_CANCEL;
       } else if (signalOperation == SIG_OP_SET_TYPE) {
-        changeSettingSignal(defaultSignalType, signalOperation);
+        changeSettingSignal(strSignalType, signalOperation);
         g_encoder.changeRange(ENCODER_LOWER_LIMIT_SIGNAL_PANEL, ENCODER_UPPER_LIMIT_SIGNAL_PANEL);
         g_encoder.setPosition(SIG_OP_SET_TYPE);
         signalOperation = SIG_OP_CANCEL;
       } else if (signalOperation == SIG_OP_SET_FREQ) {
-        changeSettingSignal(defaultFrequency, signalOperation);
+        changeSettingSignal(strFrequency, signalOperation);
         g_encoder.changeRange(ENCODER_LOWER_LIMIT_SIGNAL_PANEL, ENCODER_UPPER_LIMIT_SIGNAL_PANEL);
         g_encoder.setPosition(SIG_OP_SET_FREQ);
         signalOperation = SIG_OP_CANCEL;

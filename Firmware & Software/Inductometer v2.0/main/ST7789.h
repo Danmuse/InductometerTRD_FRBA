@@ -26,9 +26,10 @@
 #define HEIGHT_FLAME_EFFECT 6
 #define FLAME_EFFECT_TRANSITION_TIME 47
 
+extern SPISettings ST7789_SPISettings;
 extern Arduino_ST7789 g_tft;
-
 extern RREFont g_font;
+
 extern RRE_Font rreInstance_12x16;
 extern RRE_Font rreInstance_Bold13x20v;
 

@@ -1,7 +1,11 @@
-#ifndef _AD9833_H_
-#define _AD9833_H_
+#ifndef _SIGNAL_GENERATOR_H_
+#define _SIGNAL_GENERATOR_H_
 
+#include "utils.h"
 #include "AD9833.h"
+
+extern SPISettings AD9833_SPISettings;
+extern AD9833 g_signalGenerator;
 
 typedef enum {
   SIG_SINE = 0,
@@ -16,4 +20,4 @@ typedef enum {
 // void actualiza_func(void);
 // void limpiaDigitos(void);
 
-#endif // _AD9833_H_
+#endif // _SIGNAL_GENERATOR_H_
