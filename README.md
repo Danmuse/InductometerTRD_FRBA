@@ -19,7 +19,7 @@ The **Inductometer** project with autoranging aims to create a device to measure
 
 ### 🔌️ __Hardware & Setup__
 
-- [ ] [Identification of the sensors, modules and controllers used.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/1) `DDM ~ 4`
+- [ ] [Identification of the sensors, modules and controllers used.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/1) `DDM ~ 5`
 <details>
   <summary><strong><span>&#160;</span>Electronic components</strong></summary>
   <ul>
@@ -49,7 +49,7 @@ The **Inductometer** project with autoranging aims to create a device to measure
 
 ### 👨‍💻️ __Firmware & Software__
 
-- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 85` `MSS ~ 0`
+- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 87` `MSS ~ 0`
 
 ### 📚️ __Documentation & Doxygen__
 

@@ -1,7 +1,7 @@
 #ifndef _ST7789_H_
 #define _ST7789_H_
 
-#include "utils.h"
+#include "comm.h"
 #if (__STM32F1__)
 #include <Arduino_ST7789_STM.h>
 #else

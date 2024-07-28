@@ -3,23 +3,28 @@
 
 #include <Arduino.h>
 #include "hardwareConfig.h"
-#include <SPI.h>
 
-#define SPI_PERIPHERAL_SPEED (36000000UL)
+#ifndef EXIT_SUCCESS
+//! @hideinitializer Indicates successful execution of a C or C++ function.
+#define EXIT_SUCCESS 0 //!< <pre><strong>Value:</strong> 0
+#endif
 
-#define ERR_SD_NOT_FOUND "MICRO SD CARD\\nNOT FOUND"
-#define ERR_SECTION_NOT_AVAILABLE "NOT AVAILABLE"
+#ifndef EXIT_FAILURE
+//! @hideinitializer Indicates unsuccessful execution of a C or C++ function.
+#define EXIT_FAILURE 1 //!< <pre><strong>Value:</strong> 1
+#endif
 
-#define FLOAT_DECIMALS_PRECISION 4
-#define SCIENTIFIC_NOTATION_EXPONENTIAL_POSITION 4
+//! @brief <b>flag_t</b> enumeration indicates whether a certain states or conditions in the program.
+typedef enum {
+	FALSE = 0, //!< Indicates that a condition is <tt>false</tt>.
+	TRUE  = 1  //!< Indicates that a condition is <tt>true</tt>.
+} flag_t;
 
 static bool isNumberExt(uint8_t character);
 static void reverse(char *str, byte length);
 static uint8_t intToStr(int32_t num, char *str, int decimals);
 static char *cftoa(float num, char *str, uint8_t decimals);
 static char *citoa(int32_t num, char *str, uint8_t base);
-
-static void spiTransaction(SPISettings settings, void (*operation)());
 
 static bool isNumberExt(uint8_t character) {
   return isdigit(character) || character=='-' || character=='+' || character=='.' || character==' ';
@@ -95,12 +100,6 @@ static char *citoa(int32_t num, char *str, uint8_t base) {
     str[++idx] = '\0';
   }
   return str;
-}
-
-static void spiTransaction(SPISettings settings, void (*operation)()) {
-    SPI.endTransaction();
-    SPI.beginTransaction(settings);
-    operation();
 }
 
 #endif // _UTILS_H_

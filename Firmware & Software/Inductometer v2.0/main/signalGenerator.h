@@ -1,7 +1,7 @@
 #ifndef _SIGNAL_GENERATOR_H_
 #define _SIGNAL_GENERATOR_H_
 
-#include "utils.h"
+#include "comm.h"
 #include "AD9833.h"
 
 extern SPISettings AD9833_SPISettings;

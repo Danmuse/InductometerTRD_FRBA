@@ -1,7 +1,7 @@
 #ifndef _SD_CARD_H_
 #define _SD_CARD_H_
 
-#include "utils.h"
+#include "comm.h"
 #include <SD_STM.h>
 
 extern SPISettings SDCard_SPISettings;
