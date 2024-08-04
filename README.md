@@ -30,7 +30,7 @@ The **Inductometer** project with autoranging aims to create a device to measure
     <span>&#10038;</span> <b>TLV3501AID</b> High speed comparator with shutdown.<br>
     <span>&#10038;</span> <b>MT3608</b> Step up (2V ~ 28V/2A).<br>
     <span>&#10038;</span> <b>LM393</b> Operational amplifier.<br>
-    <span>&#10038;</span> <b>X9C103S</b> 10KΩ digital potentiometer<br>.
+    <span>&#10038;</span> <b>X9C103S</b> 10KΩ digital potentiometer.<br>
     <span>&#10038;</span> <b>INA219</b> Current/voltage sensor (500mV ~ 26V/3.2A).<br>
     <!-- <span>&#10038;</span> <b>100Ω</b> 1/4W and <b>220Ω</b> 1/4W Resistors.<br>
     <span>&#10038;</span> Mx471 Current/Voltage sensor ~ Maximum 3A/3-36V. (Q-meter)<br>
@@ -46,6 +46,7 @@ The **Inductometer** project with autoranging aims to create a device to measure
 
 - [ ] [Hardware installations and cabinet design.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/2) `DDM ~ 0`
 - [ ] [Development board (Schematic and PCB).](https://github.com/Danmuse/InductometerTRD_FRBA/issues/3) `DDM ~ 0`
+- [ ] [Circuit simulations with LTSpice.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/10) `DDM ~ 9`
 
 ### 👨‍💻️ __Firmware & Software__
 
