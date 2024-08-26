@@ -6,7 +6,6 @@ void setup(void) {
   Serial.begin(115200);
   g_font.init(customRect, SCR_WD, SCR_HT);
   g_signalGenerator.begin();
-  g_signalGenerator.setWave(AD9833_OFF);
 
   if (SD.begin(SD_CS_PIN)) {
     cardPlugged = true;

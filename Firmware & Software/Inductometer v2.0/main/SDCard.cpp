@@ -1,6 +1,6 @@
 #include "SDCard.h"
 
-SPISettings SDCard_SPISettings(SPI_PERIPHERAL_SPEED, MSBFIRST, SPI_MODE0);
+SPISettings SDCard_SPISettings(SPI_PERIPHERAL_SPEED, MSBFIRST, SPI_MODE0, DATA_SIZE_8BIT);
 
 // These read 16-bit and 32-bit types from the SD card file.
 // BMP data is stored little-endian, Arduino is little-endian too.

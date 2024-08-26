@@ -17,11 +17,12 @@
 #include <SPI.h> //!< Serial Peripheral Interface (<tt>SPI</tt>) communication methods.
 #include <Wire.h> //!< Inter-IC (<tt>I2C</tt>) communication methods.
 
-//! @hideinitializer Defines the speed of Serial Peripheral Interface (<tt>SPI</tt>) communication for the <a target = "__blank" href = "https://www.arduino.cc/en/Reference/SPI"><tt><b><SPI.h></b></tt></a> library. The value is defined in bits per second (<tt>bps</tt>) and determines the maximum data transfer rate.
-#define SPI_PERIPHERAL_SPEED (36000000UL)//!< <pre><strong>Value:</strong> 36000000
+//! @hide initializer Defines the speed of Serial Peripheral Interface (<tt>SPI</tt>) communication for the <a target = "__blank" href = "https://www.arduino.cc/en/Reference/SPI"><tt><b><SPI.h></b></tt></a> library. The value is defined in bits per second (<tt>bps</tt>) and determines the maximum data transfer rate.
+#define SPI_PERIPHERAL_DEFAULT_SPEED (4000000UL) //!< <pre><strong>Value:</strong> 4000000
+#define SPI_PERIPHERAL_SPEED (36000000UL) //!< <pre><strong>Value:</strong> 36000000
 
 //! @hideinitializer Defines the speed of Inter-IC (<tt>I2C</tt>) communication for the <a target = "__blank" href = "https://reference.arduino.cc/reference/en/language/functions/communication/wire/"><tt><b><Wire.h></b></tt></a> library. The value is defined in bits per second (<tt>bps</tt>) and determines the maximum data transfer rate.
-#define WIRE_SPEED (100000UL) //!< <pre><strong>Value:</strong> 100000
+#define WIRE_SPEED (400000UL) //!< <pre><strong>Value:</strong> 400000
 
 //! @brief <b>statusI2C_t</b> enumeration indicates the status and faults of Inter-IC (<tt>I2C</tt>) communication.
 typedef enum {

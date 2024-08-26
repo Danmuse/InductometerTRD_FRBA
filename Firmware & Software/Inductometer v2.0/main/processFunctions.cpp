@@ -91,7 +91,7 @@ static void changeSettingSignal(char setting[MAX_SIGNAL_SETTING_SIZE], sig_opera
 #ifndef MULTIPLIER_EXPONENTIAL_NOTATION_REPRESENTATION
   const char* multipliers[] = {"1", "10", "100", "1000", "10000"};
 #else
-  const char* exponents[] = {"10^0", "10^1", "10^2", "10^3", "10^4", "10^5", "10^6"};
+  const char* exponents[] = {"10^0", "10^1", "10^2", "10^3", "10^4", "10^5"};
 #endif // !defined(MULTIPLIER_EXPONENTIAL_NOTATION_REPRESENTATION)
   const char* signalTypes[] = {"SINE", "SQUARE", "TRIANG"};
   const uint8_t numSignalTypes = sizeof(signalTypes) / sizeof(signalTypes[0]);

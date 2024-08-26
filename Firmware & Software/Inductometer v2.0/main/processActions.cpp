@@ -2,8 +2,6 @@
 
 void generateSignal(char *strFrequency, char *strSignalType) {
   spiTransaction(AD9833_SPISettings, []() { });
-  // Serial.print("strSignalType: "); Serial.println(strSignalType);
-  // Serial.print("strFrequency: "); Serial.println(strFrequency);
   if (!strcmp(strSignalType, "SINE")) g_signalGenerator.setWave(AD9833_SINE);
   else if (!strcmp(strSignalType, "SQUARE")) g_signalGenerator.setWave(AD9833_SQUARE1);
   else if (!strcmp(strSignalType, "TRIANG")) g_signalGenerator.setWave(AD9833_TRIANGLE);
@@ -14,7 +12,6 @@ void generateSignal(char *strFrequency, char *strSignalType) {
     char strFrequencyValue[strlen(strFrequency) - 2 + 1];
     strncpy(strFrequencyValue, strFrequency, strlen(strFrequency) - 2);
     strFrequencyValue[strlen(strFrequency) - 2] = '\0';
-    // Serial.print("Frequency: "); Serial.println(atoi(strFrequencyValue));
-    g_signalGenerator.setFrequency(atoi(strFrequencyValue));
+    g_signalGenerator.setFrequency(atof(strFrequencyValue));
   }
 }
