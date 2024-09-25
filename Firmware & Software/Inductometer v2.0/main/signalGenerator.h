@@ -7,6 +7,12 @@
 extern SPISettings AD9833_SPISettings;
 extern AD9833 g_signalGenerator;
 
+/*
+#define WAVE_SINE     0x2000
+#define WAVE_SQUARE   0x2028
+#define WAVE_TRIANGLE 0x2002
+*/
+
 typedef enum {
   SIG_SINE = 0,
   SIG_SQUARE = 1,

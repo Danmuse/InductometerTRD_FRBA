@@ -1,7 +1,7 @@
 #include "signalGenerator.h"
 
-SPISettings AD9833_SPISettings(SPI_PERIPHERAL_DEFAULT_SPEED, MSBFIRST, SPI_MODE2, DATA_SIZE_8BIT);
-AD9833 g_signalGenerator(AD9833_FSYNC);
+SPISettings AD9833_SPISettings(SPI_PERIPHERAL_SPEED, MSBFIRST, SPI_MODE2, DATA_SIZE_8BIT);
+AD9833 g_signalGenerator(AD9833_FSYNC); //, AD9833_DATA, AD9833_CLOCK);
 
 /*
 void AD9833setup(void) {
@@ -38,77 +38,6 @@ void WriteRegister(int dat) {
    SPI.transfer(dat&0xFF);
    digitalWrite(FSYNC, HIGH);
    SPI.setDataMode(SPI_MODE0);
-}
-
-*/
-
-/*
-
-void actualiza_func(void) {
-   if(!digitalRead(b_FUNC)){
-      delay(50);
-      if(!digitalRead(b_FUNC)){ 
-         if(func_ant == 0)
-            func = 1;
-         if(func_ant == 1)
-            func = 2;
-         if(func_ant == 2)
-            func = 0;
-         func_ant = func;
-      }
-   }
-   if(func == 0){
-      lcd.setCursor(6, 1);
-      lcd.print("  SENOIDAL");
-      function = WAVE_SINE;
-   }
-   if(func == 1){
-      lcd.setCursor(6, 1);
-      lcd.print("TRIANGULAR");
-      function = WAVE_TRIANGLE;
-   }
-   if(func == 2){
-      lcd.setCursor(6, 1);
-      lcd.print("  CUADRADA");
-      function = WAVE_SQUARE;
-   }
-   if(counter_ant != counter || function_ant != function){
-      AD9833setFrequency(counter, function);
-   }
-   counter_ant = counter;
-   function_ant = function;
-}
-
-void limpiaDigitos(void) {
-   if(counter < 100){
-      lcd.setCursor(2, 0);
-      lcd.print("      ");  
-   }else{
-      if(counter < 1000){
-         lcd.setCursor(3, 0);
-         lcd.print("     "); 
-      }else{
-         if(counter < 10000){
-            lcd.setCursor(4, 0);
-            lcd.print("    "); 
-         }else{
-            if(counter < 100000){
-               lcd.setCursor(5, 0);
-               lcd.print("   "); 
-            }else{
-               if(counter < 1000000){
-                  lcd.setCursor(6, 0);
-                  lcd.print("  "); 
-               }else{
-                  if(counter < 10000000){
-                     lcd.setCursor(7, 0);
-                     lcd.print(" "); 
-                  }
-               }
-            }
-         }
-      }                
-   }
 }
 
 */

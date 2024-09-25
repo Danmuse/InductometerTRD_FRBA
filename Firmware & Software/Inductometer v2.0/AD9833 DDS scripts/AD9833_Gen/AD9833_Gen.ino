@@ -3,6 +3,8 @@
 // const int rs = 2, en = 3, d4 = 8, d5 = 5, d6 = 6, d7 = 7;
 // LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
+#include "MCP4725Ax.h"
+
 #define WAVE_SINE     0x2000
 #define WAVE_SQUARE   0x2028
 #define WAVE_TRIANGLE 0x2002
@@ -35,7 +37,7 @@ int multi = 1;
 int func = 0;
 int last_func = 0;
 
-bool newCommand = true;
+bool newCommand = false;
 
 void AD9833setup() {
   pinMode(FSYNC, OUTPUT);
@@ -82,6 +84,15 @@ void setup() {
   pinMode(b_FUNC, INPUT_PULLUP);
   pinMode(b_NEW_CMD, INPUT_PULLUP);
   pinMode(b_END_CMD, INPUT_PULLUP);
+
+  initMCP();
+  if (!(setVoltage(analogMCPA0_agnd, 10, FALSE))) Serial.println("OK");
+  else if (!(setVoltage(analogMCPA0_avdd, 10, FALSE))) Serial.println("OK");
+  else if (!(setVoltage(analogMCPA1_agnd, 10, FALSE))) Serial.println("OK");
+  else if (!(setVoltage(analogMCPA1_avdd, 10, FALSE))) Serial.println("OK");
+  else if (!(setVoltage(analogMCPA2_agnd, 10, FALSE))) Serial.println("OK");
+  else if (!(setVoltage(analogMCPA2_avdd, 10, FALSE))) Serial.println("OK");
+  else Serial.println("FAIL");
 }
 
 void actualiza_func() {

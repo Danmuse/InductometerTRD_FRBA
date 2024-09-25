@@ -41,7 +41,8 @@ typedef enum {
 static void spiTransaction(SPISettings settings, void (*operation)());
 
 static void spiTransaction(SPISettings settings, void (*operation)()) {
-    SPI.endTransaction();
+    // SPI.endTransaction();
+    SPI.end(); SPI.begin();
     SPI.beginTransaction(settings);
     operation();
 }

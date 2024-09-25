@@ -6,6 +6,8 @@
 #define TFT_RST PB0
 #define TFT_CS  PA3
 #define AD9833_FSYNC PA2
+// #define AD9833_DATA PA7
+// #define AD9833_CLOCK PA5
 #define SD_CS_PIN PA4
 #define KY040_SW_PIN PC15
 #define KY040_CLK_PIN PC13

@@ -28,7 +28,7 @@ The **Inductometer** project with autoranging aims to create a device to measure
     <span>&#10038;</span> <b>STM32F103C8T6 Blue-pill board</b>.<br>
     <span>&#10038;</span> <b>18650</b> Rechargeable Li-ion battery (3.65V/2.6A).<br>
     <span>&#10038;</span> <b>TP4056</b> Charging module for 3.7V/1A Li-ion battery.<br>
-    <span>&#10038;</span> <b>AD9833</b> Sinusoidal/triangular/square signal generator (1Hz ~ 12MHz).<br>
+    <span>&#10038;</span> <b>AD9833</b> DDS Sinusoidal/triangular/square signal generator (1Hz ~ 12MHz).<br>
     <span>&#10038;</span> <b>MT3608</b> Step up (2V ~ 28V/2A).<br>
     <span>&#10038;</span> <b>INA219</b> Current/voltage sensor (500mV ~ 26V/3.2A).<br>
     <span>&#10038;</span> <b>X9C103S</b> 10KΩ digital potentiometer.<br>
@@ -50,11 +50,11 @@ The **Inductometer** project with autoranging aims to create a device to measure
 
 - [ ] [Hardware installations and cabinet design.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/2) `DDM ~ 0`
 - [ ] [Development board (Schematic and PCB).](https://github.com/Danmuse/InductometerTRD_FRBA/issues/3) `DDM ~ 10`
-- [ ] [Circuit simulations with LTSpice.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/10) `DDM ~ 18`
+- [ ] [Circuit simulations with LTSpice.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/10) `DDM ~ 27`
 
 ### 👨‍💻️ __Firmware & Software__
 
-- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 102` `MSS ~ 0`
+- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 107.5` `MSS ~ 0`
 
 ### 📚️ __Documentation & Doxygen__
 

@@ -2,6 +2,8 @@
 
 void generateSignal(char *strFrequency, char *strSignalType) {
   spiTransaction(AD9833_SPISettings, []() { });
+  // SPI.end(); SPI.begin();
+  // g_signalGenerator.setSPIspeed(SPI_PERIPHERAL_SPEED);
   if (!strcmp(strSignalType, "SINE")) g_signalGenerator.setWave(AD9833_SINE);
   else if (!strcmp(strSignalType, "SQUARE")) g_signalGenerator.setWave(AD9833_SQUARE1);
   else if (!strcmp(strSignalType, "TRIANG")) g_signalGenerator.setWave(AD9833_TRIANGLE);
