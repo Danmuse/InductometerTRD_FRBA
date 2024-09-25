@@ -1,0 +1,56 @@
+(ExpressProject "TPS55340_AVG"
+  (ProjectVersion "19981106")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File "..\olb\tps55340_avg.olb"
+        (Type "Schematic Library")))
+    (NoModify)
+    (File "tps55340_avg.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (RootChangedForceReNetlist "x")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE"))
+  (Folder "Outputs")
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (ActiveProfile ".\tps55340_avg-pspicefiles\evm_test_bench\avg.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\tps55340_avg-pspicefiles\evm_test_bench\avg.sim"
+        (DisplayName "EVM_TEST_BENCH-avg")
+        (Type "PSpice Profile")))
+    (Folder "Model Libraries"
+      (Sort User)
+      (File ".\tps55340_avg.lib"
+        (Type "PSpiceLibrary"))
+      (File ".\tps55340_avg_evm.lib"
+        (Type "PSpiceLibrary")))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (PartMRUSelector
+    (TPS55340_AVG
+      (FullPartName "TPS55340_AVG.Normal")
+      (LibraryName "C:\WORK_AREA\PART_NUMBERS\TPS55340\OLB\TPS55340_AVG.OLB")
+      (DeviceIndex "0"))
+    (LM5127-Q1_BOOST_AVG
+      (FullPartName "LM5127-Q1_BOOST_AVG.Normal")
+      (LibraryName
+         "C:\PART_NUMBERS\LM5127-Q1\RELEASE\LM5127-Q1_BUCK_PSPICE_AVG\LM5127-Q1_BOOST_AVG.OLB")
+      (DeviceIndex "0")))
+  (ISPCBBASICLICENSE "false")
+  (MPSSessionName "x0261620")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Outputs")
+      (Select "Design Resources"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -8 -31 0 309 0 318"))
+      (Tab 0))))

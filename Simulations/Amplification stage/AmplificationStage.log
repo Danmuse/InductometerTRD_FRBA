@@ -1,6 +1,6 @@
 LTspice 24.0.12 for Windows
 Circuit: * C:\Users\ddimodica\Desktop\Codemind\DanmuseGitHub\InductometerTRD_FRBA\Simulations\Amplification stage\AmplificationStage.asc
-Start Time: Sat Aug 24 16:35:32 2024
+Start Time: Thu Sep 12 17:54:52 2024
 solver = Normal
 Maximum thread count: 8
 tnom = 27
@@ -29,5 +29,5 @@ Gmin = 2.70769e-13
 Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
-Total elapsed time: 0.353 seconds.
+Total elapsed time: 0.753 seconds.
 

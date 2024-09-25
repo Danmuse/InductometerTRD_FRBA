@@ -1,0 +1,67 @@
+**$ENCRYPTED_LIB
+**$INTERFACE
+*$
+* TPS55340
+*****************************************************************************
+* (C) Copyright 2020 Texas Instruments Incorporated. All rights reserved.                                            
+*****************************************************************************
+** This model is designed as an aid for customers of Texas Instruments.
+** TI and its licensors and suppliers make no warranties, either expressed
+** or implied, with respect to this model, including the warranties of 
+** merchantability or fitness for a particular purpose.  The model is
+** provided solely on an "as is" basis.  The entire risk as to its quality
+** and performance is with the customer
+*****************************************************************************
+*
+* This model is subject to change without notice. Texas Instruments
+* Incorporated is not responsible for updating this model.
+*
+*****************************************************************************
+*
+** Released by: Texas Instruments Inc.
+* Part: TPS55340
+* Date: 26MAR2020
+* Model Type: AVERAGE
+* Simulator: PSPICE
+* Simulator Version: 17.2
+* EVM Order Number: TPS55340EVM-017
+* EVM Users Guide: SLVU668B–April2012–RevisedJuly 2019
+* Datasheet: SLVSBD4D–MAY2012–REVISEDJANUARY2019
+* Topologies Supported: Boost
+*
+* Model Version: Final 1.0
+*
+*****************************************************************************
+*
+* Updates:
+*
+* Final 1.0
+* 
+*
+*****************************************************************************
+*
+* Model Usage Notes:
+* 1. Since this is an average model used for AC analysis, only the pins affecting AC analysis are modeled.
+* 2. The model is developed and validated for CCM mode of operation only.
+* 3. Temperature effects are not modeled. 
+*
+*****************************************************************************
+.SUBCKT CESR IN OUT
++ PARAMS:  C=100u ESR=0.01
+$CDNENCSTART_ADV2
+17f62b1fb318c25603aeb85644ae98a5d179ef807807791f6459efacb9d7ffc37a831b146dc0f06bb1ef275619162e6d8f7ad0dc708bf15ae1a1d5bd0ae623b2
+e6866184bd5ca209a663abe9cae90e18cd785be84956186f699be85635a1ad8f0ba0114014a145da40fe58c209abf5f240a83390339f67e7ca0924c4770cff33
+b3d14203e2b89916bba7734b044212abff178edad8540f9e6065985d5c30449a721d59bda804cba048b382637df3d138b3f1e381c192a36bf452161d6273eb23
+$CDNENCFINISH_ADV2
+.ENDS CESR
+*$
+.SUBCKT LDCR IN OUT
++ PARAMS:  L=1u DCR=0.01
+$CDNENCSTART_ADV2
+17f62b1fb318c25603aeb85644ae98a5d179ef807807791f6459efacb9d7ffc37a831b146dc0f06bb1ef275619162e6d8f7ad0dc708bf15ae1a1d5bd0ae623b2
+85ec28b2680a0c981891ac83f19241eecd785be84956186f699be85635a1ad8f0ba0114014a145da40fe58c209abf5f240a83390339f67e7ca0924c4770cff33
+d4e26f470a247fcc8da829f0d0b9e7d6ff178edad8540f9e6065985d5c30449a721d59bda804cba048b382637df3d138b3f1e381c192a36bf452161d6273eb23
+$CDNENCFINISH_ADV2
+.ENDS LDCR
+*$
+
