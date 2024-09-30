@@ -1,21 +1,16 @@
 #include "main.h"
 
-// CHECK THE FOLLOWING INCLUTION!!
-#include "MCP4725Ax.h"
-
 operation_t instr_operation = OP_NONE;
 
 void setup(void) {
   Serial.begin(115200);
+  pinMode(BOOSTER_ENABLEMENT, OUTPUT);
+  digitalWrite(BOOSTER_ENABLEMENT, LOW);
   g_font.init(customRect, SCR_WD, SCR_HT);
-  // spiTransaction(AD9833_SPISettings, []() { });
-  g_signalGenerator.begin();
-  
-  g_signalGenerator.setWave(AD9833_SINE);
-  g_signalGenerator.setFrequency(2000);
 
   initMCP();
-  setVoltage(analogMCPA1_agnd, 10, FALSE);
+  setVoltage(analogMCPA0_agnd, 360, FALSE);
+  g_signalGenerator.begin();
 
   if (SD.begin(SD_CS_PIN)) {
     cardPlugged = true;

@@ -12,6 +12,7 @@
 #define KY040_SW_PIN PC15
 #define KY040_CLK_PIN PC13
 #define KY040_DT_PIN PC14
+#define BOOSTER_ENABLEMENT PB10
 #else
 #define TFT_DC  8
 #define TFT_RST 9
@@ -21,6 +22,7 @@
 #define KY040_SW_PIN 6
 #define KY040_CLK_PIN 5
 #define KY040_DT_PIN 4
+#define BOOSTER_ENABLEMENT A0
 #endif
 
 #endif // _HARDWARE_CONFIG_H_

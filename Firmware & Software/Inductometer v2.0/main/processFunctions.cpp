@@ -442,7 +442,7 @@ void settingSignal(void) {
         if (DEFAULT_SIGNAL_TYPE == SIG_SINE) {
           strncpy(strSignalType, "SINE", strlen("SINE"));
           strSignalType[strlen("SINE")] = '\0';
-        } else if (DEFAULT_SIGNAL_TYPE == SIG_SQUARE) {
+        } else if (DEFAULT_SIGNAL_TYPE == SIG_FST_SQUARE) {
           strncpy(strSignalType, "SQUARE", strlen("SQUARE"));
           strSignalType[strlen("SQUARE")] = '\0';
         } else if (DEFAULT_SIGNAL_TYPE == SIG_TRIANGLE) {
@@ -520,9 +520,11 @@ void settingSignal(void) {
         g_tft.drawFastHLine(0, 46, SCR_WD, FRAME_PANEL_ELEMENTS_COLOR);
         configFont(g_font, &rreInstance_12x16, PANEL_ELEMENTS_ACTIVE_COLOR(false), 1, 2, 2, 2, 10);
         g_font.printStr(ALIGN_CENTER,8,"PRESS TO STOP");
+        digitalWrite(BOOSTER_ENABLEMENT, HIGH);
         generateSignal(strFrequency, strSignalType);
         while (!g_encoder.buttonPressed());
-        g_signalGenerator.setWave(AD9833_OFF);
+        digitalWrite(BOOSTER_ENABLEMENT, LOW);
+        g_signalGenerator.setWave(SIG_NONE);
         spiTransaction(ST7789_SPISettings, []() { });
         g_encoder.setPosition(SIG_OP_COMPLETE);
         signalOperation = SIG_OP_CANCEL;
