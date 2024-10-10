@@ -5,11 +5,11 @@ operation_t instr_operation = OP_NONE;
 void setup(void) {
   Serial.begin(115200);
   pinMode(BOOSTER_ENABLEMENT, OUTPUT);
-  digitalWrite(BOOSTER_ENABLEMENT, LOW);
+  // digitalWrite(BOOSTER_ENABLEMENT, LOW); // It's not necessary
   g_font.init(customRect, SCR_WD, SCR_HT);
 
   initMCP();
-  setVoltage(analogMCPA0_agnd, 360, FALSE);
+  // setVoltage(analogMCPA0_agnd, 360, FALSE);
   g_signalGenerator.begin();
 
   if (SD.begin(SD_CS_PIN)) {

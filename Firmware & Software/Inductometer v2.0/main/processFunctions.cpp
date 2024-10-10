@@ -522,9 +522,13 @@ void settingSignal(void) {
         g_font.printStr(ALIGN_CENTER,8,"PRESS TO STOP");
         digitalWrite(BOOSTER_ENABLEMENT, HIGH);
         generateSignal(strFrequency, strSignalType);
-        while (!g_encoder.buttonPressed());
-        digitalWrite(BOOSTER_ENABLEMENT, LOW);
+        setVoltage(analogMCPA0_agnd, 360, FALSE); // TODO: Implement a dinamic adjustment
+        delay(1); // Try to delete this
+        while (!g_encoder.buttonPressed()) {
+          // TODO: Read the output signal waveform with the ADC
+        }
         g_signalGenerator.setWave(SIG_NONE);
+        digitalWrite(BOOSTER_ENABLEMENT, LOW);
         spiTransaction(ST7789_SPISettings, []() { });
         g_encoder.setPosition(SIG_OP_COMPLETE);
         signalOperation = SIG_OP_CANCEL;
