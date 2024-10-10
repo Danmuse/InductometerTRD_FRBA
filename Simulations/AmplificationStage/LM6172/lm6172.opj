@@ -1,0 +1,68 @@
+(ExpressProject "LM6172"
+  (ProjectVersion "19981106")
+  (SoftwareVersion "17.4-2020 S006-[05/27/21]")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File ".\library\lm6172.olb"
+        (Type "Schematic Library")))
+    ("Allegro Netlist Directory" "allegro")
+    (DOCKED "TRUE")
+    (DOCKING_POSITION "61215")
+    (NoModify)
+    (File ".\lm6172.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE"))
+  (Folder "Layout")
+  (Folder "Outputs"
+    (File ".\lm6172-pspicefiles\schematic1\schematic1.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (ActiveProfile ".\lm6172-pspicefiles\schematic1\transientanalysis.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\lm6172-pspicefiles\schematic1\transientanalysis.sim"
+        (DisplayName "SCHEMATIC1-TransientAnalysis")
+        (Type "PSpice Profile")))
+    (Folder "Model Libraries"
+      (Sort User)
+      (File ".\lm6172.lib"
+        (Type "PSpiceLibrary")
+        (DisplayName ".\LM6172.lib")))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (Folder "Logs")
+  (PartMRUSelector
+    (LM6172/NS
+      (FullPartName "LM6172/NS.Normal")
+      (LibraryName "C:\USERS\A0232073\DOWNLOADS\LM6172\LM6172.OLB")
+      (DeviceIndex "0")))
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources" ".\lm6172.dsn")
+      (Path "Design Resources" ".\lm6172.dsn" "SCHEMATIC1")
+      (Path "Design Resources" "Library")
+      (Path "Outputs"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 0 200 0 852"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 5 987 24 893")
+        (Scroll "0 -58")
+        (Zoom "100")
+        (Occurrence "/"))
+      (Path "C:\USERS\A0232073\DOWNLOADS\LM6172\LM6172.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1")))
+  (MPSSessionName "a0232073"))

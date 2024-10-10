@@ -49,12 +49,12 @@ The **Inductometer** project with autoranging aims to create a device to measure
 </details>
 
 - [ ] [Hardware installations and cabinet design.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/2) `DDM ~ 0`
-- [ ] [Development board (Schematic and PCB).](https://github.com/Danmuse/InductometerTRD_FRBA/issues/3) `DDM ~ 10`
-- [ ] [Circuit simulations with LTSpice.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/10) `DDM ~ 27`
+- [ ] [Development board (Schematic and PCB).](https://github.com/Danmuse/InductometerTRD_FRBA/issues/3) `DDM ~ 17`
+- [ ] [Circuit simulations with LTSpice.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/10) `DDM ~ 32`
 
 ### 👨‍💻️ __Firmware & Software__
 
-- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 118` `MSS ~ 0`
+- [ ] [Achieving connectivity between sensors and modules with the microcontroller.](https://github.com/Danmuse/InductometerTRD_FRBA/issues/4) `DDM ~ 123` `MSS ~ 0`
 
 ### 📚️ __Documentation & Doxygen__
 

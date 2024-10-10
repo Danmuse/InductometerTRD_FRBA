@@ -1,0 +1,5 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\ddimodica\Desktop\Codemind\DanmuseGitHub\InductometerTRD_FRBA\Simulations\AmplificationStage\AmplificationStage.asc
+Start Time: Tue Oct  8 03:23:20 2024
+Fatal Error: Port(pin) count mismatch between the definition of subcircuit "opa380" and instance: "xu1"
+The instance has more connection terminals than the definition.
